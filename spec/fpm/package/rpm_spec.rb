@@ -114,7 +114,7 @@ describe FPM::Package::RPM do
       end # after
 
     it "should permit spaces in filenames (issue #164)" do
-      File.write(subject.staging_path("file with space"), "Hello")
+      File.open(subject.staging_path("file with space"), "w") { |f| f.write "Hello" }
 
       # This will raise an exception if rpmbuild fails.
       subject.output(@target.path)
